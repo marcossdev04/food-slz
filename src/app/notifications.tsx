@@ -8,7 +8,7 @@ import Animated, {
 import { HeaderNotifications } from '../components/headerNotifications'
 import Constants from 'expo-constants'
 
-export default function Notifications() {
+export function Notifications() {
   const statusBarHeight = Constants.statusBarHeight
   const opacity = useSharedValue(0)
   const translateX = useSharedValue(100)

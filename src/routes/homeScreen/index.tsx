@@ -1,11 +1,10 @@
 import { ScrollView, View } from 'react-native'
-import { Banner } from '../banner'
-import { Header } from '../header'
-import { RestaurantVerticalList } from '../list'
-import { Restaurants } from '../restaurants'
-import { Search } from '../search'
-import { Section } from '../section'
-import { TrandingFoods } from '../trending'
+import { Banner } from '../../components/banner'
+import { Header } from '../../components/header'
+import { RestaurantVerticalList } from '../../components/list'
+import { Restaurants } from '../../components/restaurants'
+import { Section } from '../../components/section'
+import { TrandingFoods } from '../../components/trending'
 import Constants from 'expo-constants'
 
 export function HomeScreen() {
@@ -13,13 +12,12 @@ export function HomeScreen() {
   return (
     <ScrollView
       style={{ flex: 1 }}
-      className="bg-slate-200"
+      className="bg-white"
       showsVerticalScrollIndicator={false}
     >
       <View className="w-full px-4" style={{ marginTop: statusBarHeight + 8 }}>
         <Header />
         <Banner />
-        <Search />
       </View>
 
       <Section

@@ -1,17 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Text, View } from 'react-native'
-import { HomeScreen } from '../components/homeScreen'
+import { HomeScreen } from '../routes/homeScreen'
 import { Ionicons } from '@expo/vector-icons'
+import { Search } from '../routes/search'
+import { Profile } from '../routes/Profile'
+import { Text, View } from 'react-native'
 
 const Tab = createBottomTabNavigator()
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  )
-}
 
 export default function Index() {
   return (
@@ -34,12 +28,27 @@ export default function Index() {
         },
         tabBarActiveTintColor: 'red',
         tabBarInactiveTintColor: 'gray',
-        headerShown: false,
+        headerShown: route.name === 'Inicio' ? false : route.name !== 'Buscar',
+        headerTitle: () => (
+          <View
+            style={{
+              flexDirection: 'row',
+            }}
+          >
+            <Text>
+              <Ionicons name="person-circle" size={24} color="black" />{' '}
+            </Text>
+            {/* Ícone do título */}
+            <Text style={{ marginLeft: 4, fontSize: 18, fontWeight: 'bold' }}>
+              Marcos Vinícius
+            </Text>
+          </View>
+        ),
       })}
     >
       <Tab.Screen name="Inicio" component={HomeScreen} />
-      <Tab.Screen name="Buscar" component={HomeScreen} />
-      <Tab.Screen name="Perfil" component={SettingsScreen} />
+      <Tab.Screen name="Buscar" component={Search} />
+      <Tab.Screen name="Perfil" component={Profile} />
     </Tab.Navigator>
   )
 }

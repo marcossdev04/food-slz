@@ -6,13 +6,11 @@ export function HeaderNotifications() {
   const router = useRouter()
   return (
     <View className="w-full flex flex-row items-center justify-between">
-      <Pressable className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
-        <Ionicons
-          onPress={() => router.push('/')}
-          name="arrow-back-outline"
-          size={25}
-          color="#121212"
-        />
+      <Pressable
+        onPress={() => router.push('/')}
+        className="w-10 h-10 bg-white rounded-full flex justify-center items-center"
+      >
+        <Ionicons name="arrow-back-outline" size={25} color="#121212" />
       </Pressable>
     </View>
   )

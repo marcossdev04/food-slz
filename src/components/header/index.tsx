@@ -18,15 +18,13 @@ export function Header() {
         </View>
       </View>
 
-      <Pressable className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
-        <Feather
-          onPress={() => {
-            router.push('/notifications')
-          }}
-          name="bell"
-          size={20}
-          color="#121212"
-        />
+      <Pressable
+        onPress={() => {
+          router.push('/notifications')
+        }}
+        className="w-10 h-10 bg-white rounded-full flex justify-center items-center"
+      >
+        <Feather name="bell" size={22} color="#121212" />
       </Pressable>
     </View>
   )
