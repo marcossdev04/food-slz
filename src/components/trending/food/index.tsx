@@ -3,6 +3,7 @@ import { FoodProps } from '..'
 import { Ionicons } from '@expo/vector-icons'
 
 export function CarHorizontalFood({ food }: { food: FoodProps }) {
+  const priceFormatted = food.price.toFixed(2)
   return (
     <Pressable className="flex flex-col rounded-xl relative">
       <Image
@@ -15,9 +16,9 @@ export function CarHorizontalFood({ food }: { food: FoodProps }) {
         <Text className="text-white text-sm">{food.rating}</Text>
       </View>
       <Text className="text-green-700 font-medium text-lg">
-        R$%{food.price}
+        R$ {priceFormatted}
       </Text>
-      <Text className="text-black mt-1">R$ {food.price}</Text>
+      <Text className="text-black mt-1">R$ {priceFormatted}</Text>
       <Text className="text-neutral-600 text-sm">
         {food.time} - R${food.delivery}
       </Text>

@@ -1,60 +1,45 @@
-import { View, ScrollView } from 'react-native'
-import { Header } from '../components/header'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { Text, View } from 'react-native'
+import { HomeScreen } from '../components/homeScreen'
+import { Ionicons } from '@expo/vector-icons'
 
-import Constants from 'expo-constants'
-import { Banner } from '../components/banner'
-import { Search } from '../components/search'
-import { Section } from '../components/section'
-import { TrandingFoods } from '../components/trending'
-import { Restaurants } from '../components/restaurants'
-import { RestaurantVerticalList } from '../components/list'
+const Tab = createBottomTabNavigator()
 
-const statusBarHeight = Constants.statusBarHeight
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings!</Text>
+    </View>
+  )
+}
 
 export default function Index() {
   return (
-    <ScrollView
-      style={{ flex: 1 }}
-      className="bg-slate-200"
-      showsVerticalScrollIndicator={false}
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName: keyof typeof Ionicons.glyphMap
+
+          if (route.name === 'Inicio') {
+            iconName = focused ? 'home' : 'home-outline'
+          } else if (route.name === 'Buscar') {
+            iconName = focused ? 'search' : 'search-outline'
+          } else if (route.name === 'Perfil') {
+            iconName = focused ? 'person' : 'person-outline'
+          } else {
+            iconName = 'alert'
+          }
+
+          return <Ionicons name={iconName} size={size} color={color} />
+        },
+        tabBarActiveTintColor: 'red',
+        tabBarInactiveTintColor: 'gray',
+        headerShown: false,
+      })}
     >
-      <View className="w-full px-4" style={{ marginTop: statusBarHeight + 8 }}>
-        <Header />
-        <Banner />
-        <Search />
-      </View>
-
-      <Section
-        name="Comidas em alta"
-        label="Veja mais"
-        action={() => {
-          console.log('Clicou no veja mais')
-        }}
-        size="text-2xl"
-      />
-      <TrandingFoods />
-
-      <Section
-        name="Famosos no FoodSlz"
-        label="Veja todos"
-        action={() => {
-          console.log('Clicou no veja mais')
-        }}
-        size="text-xl"
-      />
-
-      <Restaurants />
-
-      <Section
-        name="Famosos no FoodSlz"
-        label="Veja todos"
-        action={() => {
-          console.log('Clicou no veja mais')
-        }}
-        size="text-xl"
-      />
-
-      <RestaurantVerticalList />
-    </ScrollView>
+      <Tab.Screen name="Inicio" component={HomeScreen} />
+      <Tab.Screen name="Buscar" component={HomeScreen} />
+      <Tab.Screen name="Perfil" component={SettingsScreen} />
+    </Tab.Navigator>
   )
 }
